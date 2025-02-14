@@ -18,10 +18,14 @@ def simple_work_calc(n, a, b):
 	Returns: the value of W(n).
 	"""
 	# TODO
+	if n == 1:
+		return 1
+	else:
+		return a * simple_work_calc(n//b, a, b)
 	pass
 
 def work_calc(n, a, b, f):
-	"""Compute the value of the recurrence $W(n) = aW(n/b) + f(n)
+	"""Compute the value of the recurrence $W(n) = aW(n/b) + f(n)pytest 
 
 	Params:
 	n......input integer
@@ -33,6 +37,10 @@ def work_calc(n, a, b, f):
 	Returns: the value of W(n).
 	"""
 	# TODO
+	if n == 1:
+		return f(1)
+	else:
+		return a * work_calc(n//b, a, b, f) + f(n)
 	pass
 
 def span_calc(n, a, b, f):
@@ -48,6 +56,10 @@ def span_calc(n, a, b, f):
 	Returns: the value of W(n).
 	"""
 	# TODO
+	if n == 1:
+		return 1
+	else:
+		return a * span_calc(n//b, a, b, f) + f(n)
 	pass
 
 
@@ -96,8 +108,8 @@ def compare_span(span_fn1, span_fn2, sizes=[10, 20, 50, 100, 1000, 5000, 10000])
 		# compute W(n) using current a, b, f
 		result.append((
 			n,
-			span_fn1,
-			span_fn2
+			span_fn1(),
+			span_fn2()
 			))
 	return result
 	
